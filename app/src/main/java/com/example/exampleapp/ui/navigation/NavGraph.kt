@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import com.example.exampleapp.ui.screens.postdetails.PostDetailsScreen
 import com.example.exampleapp.ui.screens.posts.PostsScreen
 
 @Composable
@@ -21,7 +22,10 @@ fun NavGraph(navController: NavHostController) {
             "$POST_DETAILS_SCREEN/{$POST_DETAILS_ID_ARG}",
             arguments = listOf(navArgument(POST_DETAILS_ID_ARG) { type = NavType.IntType })
         ) {
-            //TODO Post Details
+            PostDetailsScreen(
+                postId = it.arguments?.getInt(POST_DETAILS_ID_ARG)
+                    ?: throw IllegalArgumentException("postId is required")
+            )
         }
     }
 }
